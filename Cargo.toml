@@ -1,0 +1,8 @@
+[workspace]
+name = "aoc2023"
+
+default-members = []
+members = ["fetch_day", "rs/*"]
+
+[workspace.dependencies]
+criterion = { version = "0.5.1", features = ["html_reports"] }
