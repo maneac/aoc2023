@@ -56,13 +56,13 @@ jobs:
         run: |
           cargo check --workspace
 
-      - name: PR Clippy error check
-        uses: actions-rs/clippy-check@v1
+      - name: Clippy PR error check
+        uses: giraffate/clippy-action@v1
         if: github.event_name == 'pull_request'
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          name: Clippy
-          args: --workspace --all-features -- -D clippy::all
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: 'github-pr-review'
+          clippy_flags: --workspace --all-features -- -D clippy::all
 
       - name: Merge Clippy error check
         if: github.event_name != 'pull_request'
