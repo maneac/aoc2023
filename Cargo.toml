@@ -1,5 +1,4 @@
 [workspace]
-name = "aoc2023"
 resolver = "2"
 
 default-members = []
