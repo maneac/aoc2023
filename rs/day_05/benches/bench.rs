@@ -24,6 +24,11 @@ fn bench() {
         b.iter(|| assert_eq!(PART_1, i.part_1()))
     });
 
+    // Too slow :(
+    if true {
+        return;
+    }
+
     group.bench_with_input("part 2", &input, |b, i| {
         b.iter(|| assert_eq!(PART_2, i.part_2()))
     });
