@@ -63,19 +63,33 @@ impl Input {
         self.races
             .iter()
             .map(|race| {
-                (0..race.time)
-                    .filter(|windup| windup * (race.time - windup) > race.distance)
-                    .count()
+                let min = ((race.time as f64
+                    - ((race.time.pow(2) - (4 * race.distance)) as f64).sqrt())
+                    / 2.0)
+                    .floor() as usize;
+
+                let max = ((race.time as f64
+                    + ((race.time.pow(2) - (4 * race.distance)) as f64).sqrt())
+                    / 2.0)
+                    .ceil() as usize;
+
+                max - (min + 1)
             })
             .product()
     }
 
     pub fn part_2(&self) -> usize {
-        (0..self.combined_race.time)
-            .filter(|windup| {
-                windup * (self.combined_race.time - windup) > self.combined_race.distance
-            })
-            .count()
+        let min = ((self.combined_race.time as f64
+            - ((self.combined_race.time.pow(2) - (4 * self.combined_race.distance)) as f64).sqrt())
+            / 2.0)
+            .floor() as usize;
+
+        let max = ((self.combined_race.time as f64
+            + ((self.combined_race.time.pow(2) - (4 * self.combined_race.distance)) as f64).sqrt())
+            / 2.0)
+            .ceil() as usize;
+
+        max - (min + 1)
     }
 }
 
